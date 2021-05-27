@@ -1,0 +1,96 @@
+{% extends "BackBundle::base.html.twig"%}
+
+{% block title%}Enregistrer un élève{% endblock title%}
+
+{% block style %}
+{% endblock style %}
+
+{% block content %}
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+      </div><!-- /.container-fluid -->
+    </section>
+
+      {% for msg in app.session.getflashbag.get('eleve.success') %}
+        <div class="alert alert-success mb-2" role="alert">
+          <strong>Infos</strong> {{ msg }}
+        </div>
+      {% endfor %}
+      {% for msg in app.session.getflashbag.get('eleve.error') %}
+        <div class="alert alert-warning mb-2" role="alert">
+          <strong>Infos</strong> {{ msg }}
+        </div>
+      {% endfor %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="col-md-12">
+          <!-- left column -->
+          <div class="col-md-8 offset-2">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Facturation élève: <b>{{eleve.nom}} {{eleve.prenom}}</b> <br>
+                Parent <b>{{eleve.parents.nom}} {{eleve.parents.prenom}}<b></h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              {{form_start(form)}}
+                <div class="card-body">
+                <div class="form-group">
+                    <label>Selectionner la formation</label>
+                      <div class="form-group" style="width: 100%;">
+                        {{ form_errors(form.formation) }}
+                        {{ form_widget(form.formation,{'attr':{'required':'','class':' form-control select2'}}) }}
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="libellepaiement">Libelle paiement</label>
+                    {{form_widget(form.libellepaiement)}}
+                  </div>
+                  <div class="form-group">
+                    <label for="montantpaiement">Réduction</label>
+                    {{form_widget(form.reduction)}}
+                  </div>
+                  <div class="form-group">
+                  <label for="" style="font-weight: bold;">Date de naissance</label>
+                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                      {{ form_widget(form.datepaiement,{'attr':{'required':'','class':' form-control datetimepicker-input','data-toggle':'datetimepicker', 'tata-target':'#reservationdate'}}) }}
+                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
+                  </div>
+                 
+                  
+                  
+                </div>
+            </div>
+                <!-- /.card-body -->
+                <div class="">
+                  <button type="submit" class="btn btn-primary" style="float: right;">Enregistrer</button>
+                </div>
+               {{form_end(form)}}
+            </div>
+            <!-- /.card -->
+          </div>
+          <!--/.col (left) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+{% endblock content %}
+
+{% block script %}
+<script>
+$(function () {
+  bsCustomFileInput.init();
+});
+</script>
+{% endblock script %}

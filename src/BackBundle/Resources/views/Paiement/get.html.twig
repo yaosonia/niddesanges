@@ -1,0 +1,166 @@
+
+<html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <style>
+      page {
+  background: white;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 0.5cm;
+  position: relative;
+}
+
+page[size=A4] {
+  width: 21cm;
+  height: 29.7cm;
+}
+
+page[size=A4][layout=landscape] {
+  width: 29.7cm;
+  height: 21cm;
+}
+
+
+@media print {
+  body, page {
+    margin: 0;
+    box-shadow: none;
+  }
+}
+      </style>
+    </head>
+
+    <body>
+
+        <page size="A4" class="container border">
+          <div class= "row">
+              <div class= "col-sm-6">
+                <p class="h4 font-weight-bold">Nid des anges</p>
+              </div>
+              <div class= "col-sm-6" style="background-color:#ebeff0">
+                <p class="h3 font-weight-bold p-2">FACTURE</p>
+              </div>
+          </div>
+
+          <div class= "row p-4">
+              <div class= "col-sm-6">
+                  <p class="d-flex justify-content-start">P.O. Box 320, </p>
+                  <p class="d-flex justify-content-start">Ross, California 9495</p>
+                  <p class="d-flex justify-content-start">Telephone/Fax</p>
+              </div>
+              <div class= "col-sm-6 d-flex justify-content-center">
+              </div>
+          </div>
+
+          <div class= "row p-4">
+              <div class= "col-sm-3" style="background-color:#ebeff0">
+                  <p class="d-flex justify-content-start">Reference: {{ paiement.id }}</p>
+                  <p class="d-flex justify-content-start">Date: {{ paiement.datepaiement }}</p>
+                  {# <p class="d-flex justify-content-start">Client: </p> #}
+              </div>
+
+              <div class= "col-sm-3"></div>
+
+              <div class= "col-sm-6">
+                  <p class="h4 font-weight-bold">Client: {{ paiement.parents.nom }} {{ paiement.parents.prenom }}</p>
+                  <p class="">CP ville: {{ paiement.parents.ville }}</p>
+                  <p class="">Adresse: {{ paiement.parents.numerovoie ~ " " ~ paiement.parents.nomvoie ~ " " ~ paiement.parents.ville }}</p>
+              </div>
+          </div>
+
+           <div class= "row p-4 pb-0">
+              <div class= "col">
+                  <p class="">Libelle: {{ paiement.libellepaiement }} ({{ paiement.eleve.nom }} {{ paiement.eleve.prenom }})</p>
+              </div>
+          </div>
+
+       
+
+          <div class= "row p-4">
+              <div class= "col ">
+                    <table class="table table-bordered">
+                        <thead class="" style="background-color:#ebeff0">
+                          <th scope="col">Quantité</th>
+                          <th scope="col">Désignation</th>
+                          <th scope="col">Montant initiale</th>
+                          <th scope="col">Montant final</th>
+                        </thead>
+
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td>{{ paiement.formation.libelleformation }}</td>
+                            <td>{{ paiement.formation.prix }}</td>
+                            <td>{{ paiement.montantfinal }}</td>
+                          </tr>
+                        </tbody>
+                    </table>
+              </div>
+          </div>
+          <div class= "row p-4">
+              <div class= "col">
+                  
+              </div>
+              <div class= "col">
+                  <table class="table table-bordered">
+                    {# <tr>
+                      <td>Totale</td>
+                      <td>1</td>
+                    </tr>
+
+                    <tr>
+                      <td>TVA</td>
+                      <td>20</td>
+                    </tr> #}
+
+                    <tr>
+                      <th>Totale en euro</th>
+                      <th>{{ paiement.montantfinal }}</th>
+                    </tr>
+                  </table>
+              </div>
+          </div>
+
+          <div class= "row">
+              <div class= "col">
+                  <p class="font-weight-bold">En votre aimable reglement,</p>
+                  <p class="font-weight-bold">Cordialement,</p>
+              </div>
+          </div>
+          
+          <div class= "row p-4">
+              <div class= "col">
+                  <small class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem,</small>
+              </div>
+          </div>
+
+
+          <div class= "row p-4">
+              <div class= "col">
+                  <small class="d-flex justify-content-center">En votre aimable reglement,</small>
+              </div>
+          </div>
+
+          <div class="card-action d-flex justify-content-center">
+          <button class="" id="print-btn" style="background-color:#ebeff0">Imprimer</a>
+        </div>
+
+        </page>
+        <script>
+          var el = document.getElementById('print-btn')
+          console.log(el)
+          el.addEventListener('click', function(event){
+            window.print()
+          })
+        </script>
+    </body>
+  </html>
+

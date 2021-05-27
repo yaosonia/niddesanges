@@ -37,10 +37,10 @@ class Paiement
      */
     private $id;
 
-    /**
-     * @var \DateTime
+  /**
+     * @var string
      *
-     * @ORM\Column(name="datepaiement", type="date")
+     * @ORM\Column(name="datepaiement", type="string")
      */
     private $datepaiement;
 

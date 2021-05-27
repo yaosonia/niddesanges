@@ -1,0 +1,81 @@
+ {% extends "BackBundle::base.html.twig"%}
+
+{% block title%}MESSAGERIE{% endblock title%}
+
+{% block style %}
+{% endblock style %}
+
+{% block content %}
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Main content -->
+     <section class="content-header">
+    </section>
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+
+               {% include "BackBundle:Communiquer:navliste.html.twig" %}
+                
+        <div class="col-md-9 col-lg-9 col-sm-12">
+          <div class="card card-primary card-outline">
+            <div class="card-header">
+              <h3 class="card-title">Messages envoyés</h3>
+            </div>
+
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+              <div class="mailbox-controls"> </div> 
+                <div class="btn-group"></div> 
+              </div>
+
+              <div class="table-responsive mailbox-messages">
+
+                <table class="table table-hover table-striped">
+                  <tbody>
+                   {% for c in communiquer %}
+                  <tr>
+                        <td>
+                        
+                          <a type="button" class="btn btn-default btn-sm"  href="{{ path('deletemessageenvoyerprof', { 'id': c.id }) }}">
+                          <i class="far fa-trash-alt"></i></a>
+                       
+                        </td>
+                    <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
+                     <td class="mailbox-name"><a href="{{path('liremessageenvoyer', { 'id': c.id }) }}">A : {{ c.nom_prenom }}</a></td>
+                    <td class="mailbox-name"><a href="{{path('liremessageenvoyer', { 'id': c.id }) }}">{{ c.objet }}</a></td>
+                    <td class="mailbox-subject">{{ c.contenumessage }}</td>
+                    <td class="mailbox-attachment"></td>
+                    <td class="mailbox-date">{{c.datemessage|date('d-m-Y')}}</td>
+                  </tr>
+                   {% endfor%}
+                  </tbody>
+                </table>
+                <!-- /.table -->
+              </div>
+              <!-- /.mail-box-messages -->
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer p-0">
+              <div class="mailbox-controls">
+                <!-- Check all button -->
+                
+               
+              </div>
+            </div>
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+
+
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+{% endblock content %}

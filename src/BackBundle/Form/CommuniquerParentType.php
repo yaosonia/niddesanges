@@ -21,7 +21,7 @@ use UserBundle\Entity\Parents;
 use UserBundle\Entity\Professeur;
 use UserBundle\Entity\Utilisateur;
 
-class CommuniquerType extends AbstractType
+class CommuniquerParentType extends AbstractType
 {
    /**
      * @param FormBuilderInterface $builder
@@ -33,12 +33,10 @@ class CommuniquerType extends AbstractType
       
       # Creation des champs
       $builder
-        #->add('professeur', EntityType::class, array('class'=>'UserBundle:Professeur','choice_label'=>'nom','placeholder'=>'De', ))
-        ->add('parents', EntityType::class, array('class'=>'UserBundle:Parents','choice_label'=>'email','placeholder'=>'Destinataire',))     
-        #>add('utilisateur', EntityType::class, array('class'=>'UserBundle:Utilisateur','choice_label'=>'email','placeholder'=>'Destinataire',))     
+        #->add('parents', EntityType::class, array('class'=>'UserBundle:Parents','choice_label'=>'email','placeholder'=>'A',))     
+        ->add('professeur', EntityType::class, array('class'=>'UserBundle:Professeur','choice_label'=>'email','placeholder'=>'Destinataire', ))    
         ->add('objet', TextType::class, array('label'=> 'objet','attr' => array('class' => 'form-control', 'style' => 'margin-bottom:10px','placeholder'=>'objet')))
         ->add('contenumessage', TextareaType::class, array('label'=> 'contenumessage','attr' => array('class' => 'form-control','style' =>'height: 200px')));
-        #->add('isprofesseursend', TextType::class, array('attr' => array('class' => 'form-control hidden', 'style' => 'display:none')));     
         #->add('datemessage', DateTimeType::class, array('label'=> 'datemessage', 'placeholder' => ['year' => 'Annee', 'month' => 'Mois', 'day' => 'Jour', 'hour' => 'Heure', 'minute' => 'Minute', 'second' => 'Seconde',]));
         #->add('Save', SubmitType::class, array('label'=> 'Envoyer', 'attr' => array('class' => 'btn btn-primary', 'style' => 'margin-top:15px')));
 
